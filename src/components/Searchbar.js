@@ -17,8 +17,28 @@ const Searchbar = () => {
      // functions
   // runs in sideways every time the page re-renders
     useEffect(() => {
-         search();
-    }, songTitle);
+         
+    // function that searches using keyword and retrives the video id 
+    const search = async () => {
+        const query = artist + "%20"+ songTitle;
+        const url = `https://youtube-search-results.p.rapidapi.com/youtube-search/?q=${query}%20audio`;
+        const response = await fetch(url, {
+	    "method": "GET",
+	    "headers": {
+		"x-rapidapi-key": "bb4a717ab6msh81eee85b2ac3b3ap18a45djsn9207984d4865",
+		"x-rapidapi-host": "youtube-search-results.p.rapidapi.com"
+	    }
+        });
+
+
+        const result = await response.json(); // convert to json
+        
+        // console.log(result);
+        setVideoID(result.items[0].id); // set video id
+    }; // search
+
+    search();
+    }, [artist, songTitle]);
 
 
     // functions
@@ -38,26 +58,6 @@ const Searchbar = () => {
 
         setKeyword(""); // clear the search bar
     };
-
-
-    // function that searches using keyword and retrives the video id 
-    const search = async () => {
-        const query = artist + "%20"+ songTitle;
-        const url = `https://youtube-search-results.p.rapidapi.com/youtube-search/?q=${query}%20audio`;
-        const response = await fetch(url, {
-	    "method": "GET",
-	    "headers": {
-		"x-rapidapi-key": "bb4a717ab6msh81eee85b2ac3b3ap18a45djsn9207984d4865",
-		"x-rapidapi-host": "youtube-search-results.p.rapidapi.com"
-	    }
-        });
-
-
-        const result = await response.json(); // convert to json
-        
-        // console.log(result);
-        setVideoID(result.items[0].id); // set video id
-    }; // search
 
 
 

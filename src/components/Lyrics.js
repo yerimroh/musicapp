@@ -4,29 +4,19 @@ import '../fonts/PFStardust.ttf';
 
 // component: lyrics
 const Lyrics = ({artist, songTitle}) => {
-
-      // runs in sideways every time the page re-renders
     
-    useEffect(() => {
-        searchLyrics();
-    }, songTitle);
-    
-
-
     // state that stores the lyrics
     const [songLyrics, setSongLyrics] = useState([]); // lyrics
-    
+    // runs in sideways every time the page re-renders
+    useEffect(() => {
+        
     // methods that retrieves the lyrics 
     const searchLyrics = async () => {
 
         const solenolyrics= require("solenolyrics"); 
-
         const lyrics = await solenolyrics.requestLyricsFor(songTitle + artist); 
-
-
         // console.log(lyrics);
 
-        
         if (lyrics === undefined) {
             setSongLyrics("Not Found!");
         } else {
@@ -35,6 +25,11 @@ const Lyrics = ({artist, songTitle}) => {
         }
 
     }; // searchlyrics
+
+        searchLyrics();
+    }, [artist, songTitle]);
+    
+
 
 
     // return scene
