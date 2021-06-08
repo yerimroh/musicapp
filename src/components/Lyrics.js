@@ -7,9 +7,9 @@ const Lyrics = ({artist, songTitle}) => {
 
       // runs in sideways every time the page re-renders
     
-    useEffect(async() => {
+    useEffect(() => {
         searchLyrics();
-    }, ([songTitle]));
+    }, songTitle);
     
 
 
@@ -51,8 +51,6 @@ const Lyrics = ({artist, songTitle}) => {
             </div>
         </div>
     );
-
-
 }; // lyrics
 
 export default Lyrics;

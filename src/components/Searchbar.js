@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Video from './Video';
 import Lyrics from './Lyrics';
 
+
 // component: searchBar
 const Searchbar = () => {
 
@@ -15,9 +16,9 @@ const Searchbar = () => {
 
      // functions
   // runs in sideways every time the page re-renders
-    useEffect(async() => {
-        search();
-    }, [songTitle]);
+    useEffect(() => {
+         search();
+    }, songTitle);
 
 
     // functions
